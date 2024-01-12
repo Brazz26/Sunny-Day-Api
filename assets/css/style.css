@@ -1,0 +1,12 @@
+.weather-app {
+    display: flex;
+    flex-direction: column;
+}
+.Main {
+    display: flex;
+
+}
+.five-day {
+    display: flex;
+}
+
