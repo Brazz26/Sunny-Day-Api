@@ -20,8 +20,8 @@ async function search(searchCity) {
         <h2>${data.name}</h2>
         <img src='${iconUrl}'/>
         <p>temp: ${parseInt(data.main.temp)}\u00B0F</p>
-        <p>humidity: ${data.main.humidity}</p>
-        <p>wind-speed: ${data.wind.speed}</p>
+        <p>humidity: ${data.main.humidity}%</p>
+        <p>wind-speed: ${data.wind.speed}mph</p>
         <p>${data.weather[0].description}</p>
         </div>
         `;
@@ -48,8 +48,8 @@ async function search(searchCity) {
             <p>${dayOfWeek}</p>
             ${iconImg}
             <h3>Temp: ${parseInt(formattedData[i].main.temp)}\u00B0F</h3>
-            <h3>Humidity: ${formattedData[i].main.humidity}</h3>
-            <h3>Wind Speed: ${formattedData[i].wind.speed}</h3>
+            <h3>Humidity: ${formattedData[i].main.humidity}%</h3>
+            <h3>Wind Speed: ${formattedData[i].wind.speed}mph</h3>
             </div>
             `;
 
