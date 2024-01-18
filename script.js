@@ -21,7 +21,7 @@ async function search(searchCity) {
         <img src='${iconUrl}'/>
         <p>temp: ${parseInt(data.main.temp)}\u00B0F</p>
         <p>humidity: ${data.main.humidity}%</p>
-        <p>wind-speed: ${data.wind.speed}mph</p>
+        <p>wind-speed: ${parseInt(data.wind.speed)}mph</p>
         <p>${data.weather[0].description}</p>
         </div>
         `;
@@ -49,10 +49,9 @@ async function search(searchCity) {
             ${iconImg}
             <h3>Temp: ${parseInt(formattedData[i].main.temp)}\u00B0F</h3>
             <h3>Humidity: ${formattedData[i].main.humidity}%</h3>
-            <h3>Wind Speed: ${formattedData[i].wind.speed}mph</h3>
+            <h3>Wind Speed: ${parseInt(formattedData[i].wind.speed)} mph</h3>
             </div>
             `;
-
                 fiveDayContainer.innerHTML = weeklyCard;
                 console.log(dayOfWeek);
             }
@@ -63,7 +62,7 @@ async function search(searchCity) {
     catch (error) {
         console.error(error)
     }
-}
+};
 
 //creates a click event to callback on saveSearches and Search functions so it happens sequentially
 searchBtn.addEventListener('click', function (event) {
