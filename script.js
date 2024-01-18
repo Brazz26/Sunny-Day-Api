@@ -12,14 +12,14 @@ async function search(searchCity) {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=imperial&appid=${apiKey}`)
 
         const data = await response.json();
-
+        console.log(data);
         const weatherIcon = data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`
         const todayWeather = `
         <div>
         <h2>${data.name}</h2>
         <img src='${iconUrl}'/>
-        <p>temp: ${data.main.temp}</p>
+        <p>temp: ${parseInt(data.main.temp)}\u00B0F</p>
         <p>humidity: ${data.main.humidity}</p>
         <p>wind-speed: ${data.wind.speed}</p>
         <p>${data.weather[0].description}</p>
@@ -30,9 +30,10 @@ async function search(searchCity) {
         const lat = data.coord.lat;
         const lon = data.coord.lon;
         try {
-            const fiveDayResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+            const fiveDayResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
             const fiveDayData = await fiveDayResponse.json();
             const formattedData = fiveDayData.list.filter(day => day.dt_txt.includes('12:00:00'));
+            console.log(fiveDayData);
 
             let weeklyCard = '';
 
@@ -46,7 +47,7 @@ async function search(searchCity) {
             <div class='card'>
             <p>${dayOfWeek}</p>
             ${iconImg}
-            <h3>Temp: ${formattedData[i].main.temp}</h3>
+            <h3>Temp: ${parseInt(formattedData[i].main.temp)}\u00B0F</h3>
             <h3>Humidity: ${formattedData[i].main.humidity}</h3>
             <h3>Wind Speed: ${formattedData[i].wind.speed}</h3>
             </div>
